@@ -1,6 +1,6 @@
-use quip::prelude::*;
 #[cfg(not(target_os = "windows"))]
 use futures::io;
+use quip::prelude::*;
 #[cfg(target_os = "windows")]
 use std::io::{self, Read, Write};
 #[cfg(not(target_os = "windows"))]

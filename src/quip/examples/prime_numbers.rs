@@ -154,8 +154,8 @@ async fn serve_prime_numbers(ctx: QuipContext) -> Result<(), ()> {
 // the quip
 mod client {
     use super::prime_number::Response;
-    use quip::prelude::*;
     use lightproc::prelude::*;
+    use quip::prelude::*;
     use rayon::prelude::*;
     use tracing::{error, info};
 

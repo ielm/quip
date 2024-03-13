@@ -2,8 +2,8 @@
 
 extern crate test;
 
-use quip_executor::blocking;
 use lightproc::proc_stack::ProcStack;
+use quip_executor::blocking;
 use std::thread;
 use std::time::Duration;
 use test::Bencher;

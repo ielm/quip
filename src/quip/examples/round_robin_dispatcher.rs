@@ -1,5 +1,5 @@
-use quip::prelude::*;
 use futures_timer::Delay;
+use quip::prelude::*;
 use std::sync::Arc;
 use std::time::Duration;
 use tracing::Level;

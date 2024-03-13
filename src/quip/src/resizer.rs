@@ -10,10 +10,10 @@ use crate::broadcast::Sender;
 use crate::context::QuipId;
 use fxhash::FxHashMap;
 use lever::table::lotable::LOTable;
-use tinyproc::recoverable_handle::RecoverableHandle;
 use std::cmp::min;
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Arc;
+use tinyproc::recoverable_handle::RecoverableHandle;
 
 #[cfg(feature = "scaling")]
 #[derive(Debug)]

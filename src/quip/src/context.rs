@@ -6,7 +6,7 @@ use crate::child_ref::ChildRef;
 use crate::children_ref::ChildrenRef;
 use crate::dispatcher::{BroadcastTarget, DispatcherType, NotificationType};
 use crate::envelope::{Envelope, RefAddr, SignedMessage};
-use crate::message::{Answer, QuipMessage, Message, Msg};
+use crate::message::{Answer, Message, Msg, QuipMessage};
 use crate::supervisor::SupervisorRef;
 use crate::{prelude::ReceiveError, system::SYSTEM};
 

@@ -39,8 +39,7 @@ pub struct Config {
     backtraces: Backtraces,
 }
 
-#[derive(PartialEq, Eq, Debug, Clone)]
-#[derive(Default)]
+#[derive(PartialEq, Eq, Debug, Clone, Default)]
 pub(crate) enum Backtraces {
     /// Shows all backtraces, like an application without
     /// Quip would.
@@ -156,5 +155,3 @@ impl Backtraces {
         self == &Backtraces::Hide
     }
 }
-
-

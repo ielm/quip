@@ -2,10 +2,10 @@
 
 extern crate test;
 
-use quip_executor::load_balancer;
-use quip_executor::prelude::spawn;
 use futures_timer::Delay;
 use lightproc::proc_stack::ProcStack;
+use quip_executor::load_balancer;
+use quip_executor::prelude::spawn;
 use std::time::Duration;
 use test::Bencher;
 

@@ -6,10 +6,10 @@
 
 use crate::pool;
 
-use tinyproc::prelude::*;
 use std::cell::Cell;
 use std::ptr;
 use std::time::Duration;
+use tinyproc::prelude::*;
 
 /// The timeout we'll use when parking before an other Steal attempt
 pub const THREAD_PARK_TIMEOUT: Duration = Duration::from_millis(1);

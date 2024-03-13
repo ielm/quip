@@ -1,11 +1,11 @@
+use futures::future::join_all;
 use quip_executor::blocking;
 use quip_executor::run::run;
-use futures::future::join_all;
-use tinyproc::proc_stack::ProcStack;
-use tinyproc::recoverable_handle::RecoverableHandle;
 use std::thread;
 use std::time::Duration;
 use std::time::Instant;
+use tinyproc::proc_stack::ProcStack;
+use tinyproc::recoverable_handle::RecoverableHandle;
 
 // Test for slow joins without task bursts during joins.
 #[test]

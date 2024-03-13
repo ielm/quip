@@ -50,8 +50,7 @@ fn main() {
     Quip::init();
     Quip::start();
 
-    let children =
-        Quip::children(|c| c.with_exec(child_task)).expect("Failed to spawn children");
+    let children = Quip::children(|c| c.with_exec(child_task)).expect("Failed to spawn children");
 
     let child = &children.elems()[0];
 

@@ -68,5 +68,3 @@ impl From<Distributor> for SendError {
         Self::NoDistributor(STRING_INTERNER.resolve(distributor.interned()).to_string())
     }
 }
-
-

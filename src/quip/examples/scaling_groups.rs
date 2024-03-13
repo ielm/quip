@@ -1,8 +1,8 @@
 use std::sync::Arc;
 use std::time::Duration;
 
-use quip::prelude::*;
 use futures_timer::Delay;
+use quip::prelude::*;
 
 ///
 /// An example with the usage of the rescaling actor groups in runtime.

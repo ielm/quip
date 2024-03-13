@@ -57,8 +57,10 @@ fn response_supervisor(supervisor: Supervisor) -> Supervisor {
 }
 
 fn input_group(children: Children) -> Children {
-    children.with_name("input").with_redundancy(1).with_exec(
-        move |ctx: QuipContext| async move {
+    children
+        .with_name("input")
+        .with_redundancy(1)
+        .with_exec(move |ctx: QuipContext| async move {
             tracing::info!("[Input] Worker started!");
 
             let data = vec!["A B C", "A C C", "B C C"];
@@ -70,8 +72,7 @@ fn input_group(children: Children) -> Children {
             }
 
             Ok(())
-        },
-    )
+        })
 }
 
 fn process_group(children: Children) -> Children {

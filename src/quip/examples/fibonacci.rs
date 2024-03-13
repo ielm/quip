@@ -87,9 +87,8 @@ fn main() {
     Quip::start();
 
     // Spawn 4 children that will execute our fibonacci task
-    let children =
-        Quip::children(|children| children.with_redundancy(4).with_exec(fib_child_task))
-            .expect("couldn't create children");
+    let children = Quip::children(|children| children.with_redundancy(4).with_exec(fib_child_task))
+        .expect("couldn't create children");
 
     // Broadcasting 1 message to the children
     // Have a look at the console output
