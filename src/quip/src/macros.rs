@@ -103,11 +103,11 @@ macro_rules! children {
     };
 
     (@sort, $red:expr, $cbs:expr, $action:expr, ,) => {
-        $crate::quip::children(|ch| {
+        $crate::Quip::children(|ch| {
             ch
                 .with_callbacks($cbs)
                 .with_redundancy($red)
-                .with_exec(|ctx: $crate::context::quipContext| {
+                .with_exec(|ctx: $crate::context::QuipContext| {
                     async move {
                         let ctx = ctx;
                         loop {
@@ -123,7 +123,7 @@ macro_rules! children {
             ch
                 .with_callbacks($cbs)
                 .with_redundancy($red)
-                .with_exec(|ctx: $crate::context::quipContext| {
+                .with_exec(|ctx: $crate::context::QuipContext| {
                     async move {
                         let ctx = ctx;
                         loop {
@@ -195,7 +195,7 @@ macro_rules! supervisor {
     };
 
     (@sort, $strat:expr, $cbs:expr,) => {
-        $crate::quip::supervisor(|sp| {
+        $crate::Quip::supervisor(|sp| {
             sp
                 .with_callbacks($cbs)
                 .with_strategy($strat)

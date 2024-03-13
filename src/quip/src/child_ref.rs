@@ -557,7 +557,7 @@ impl ChildRef {
     /// #
     /// # let children_ref = Quip::children(|children| children).unwrap();
     /// # let child_ref = &children_ref.elems()[0];
-    /// child_ref.kill().expect("Couldn't send the message.");
+    /// # child_ref.kill().expect("Couldn't send the message.");
     /// #
     /// # Quip::start();
     /// # Quip::stop();

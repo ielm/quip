@@ -424,7 +424,7 @@ impl Quip {
     /// # fn run() {
     /// # Quip::init();
     /// #
-    /// let children_ref: ChildrenRef = Quip::spawn(|ctx: quipContext| {
+    /// let children_ref: ChildrenRef = Quip::spawn(|ctx: QuipContext| {
     ///     async move {
     ///         // ...
     ///         Ok(())

@@ -3,8 +3,6 @@ use anyhow::Result as AnyResult;
 #[cfg(feature = "tokio-runtime")]
 use quip::prelude::*;
 #[cfg(feature = "tokio-runtime")]
-use tokio;
-#[cfg(feature = "tokio-runtime")]
 use tracing::{error, warn, Level};
 
 /// `cargo run --features=tokio-runtime --example hello_tokio`
