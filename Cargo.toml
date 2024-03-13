@@ -1,10 +1,11 @@
 [workspace]
 members = [
-  "src/bastion",
-  "src/bastion-executor",
-  "src/bastion-utils",
-  "src/lightproc"
+  "src/quip",
+  "src/quip-executor",
+  "src/quip-utils",
+  "src/tinyproc"
 ]
+resolver = "2"
 
 [profile.bench]
 panic = "unwind"
