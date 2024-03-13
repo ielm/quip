@@ -17,6 +17,8 @@ Cargo.lock
 
 bcs
 
+.DS_Store
+
 # Intellij stuff
 .idea/
 
