@@ -5,11 +5,11 @@ about: Create a report to help us improve
 ---
 
 <!--
-Thank you for reporting a possible bug in Bastion.
+Thank you for reporting a possible bug in Quip.
 
 Please fill in as much of the template below as you can.
 
-Version: Version of `bastion`, `bastion-executor` and `lightproc` respectively.
+Version: Version of `quip`, `quip-executor` and `tinyproc` respectively.
 Platform: output of `uname -a` (UNIX), or version and 32 or 64-bit (Windows)
 Subsystem: if known, please specify affected core module name
 

@@ -7,7 +7,6 @@ use crate::envelope::{Envelope, RefAddr};
 use crate::message::{Answer, Message, QuipMessage};
 use crate::path::QuipPath;
 use crate::{broadcast::Sender, prelude::SendError};
-use std::cmp::{Eq, PartialEq};
 use std::fmt::Debug;
 use std::hash::{Hash, Hasher};
 use std::sync::Arc;

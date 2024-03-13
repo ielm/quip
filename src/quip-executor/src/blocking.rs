@@ -106,7 +106,7 @@ static POOL: Lazy<Pool> = Lazy::new(|| {
     {
         let runner = Arc::new(BlockingRunner {
             // We use current() here instead of try_current()
-            // because we want bastion to crash as soon as possible
+            // because we want quip to crash as soon as possible
             // if there is no available runtime.
             runtime_handle: tokio::runtime::Handle::current(),
         });

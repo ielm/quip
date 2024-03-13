@@ -6,7 +6,7 @@ pub fn random(n: u32) -> u32 {
     use std::num::Wrapping;
 
     thread_local! {
-        static RNG: Cell<Wrapping<u32>> = Cell::new(Wrapping(0x5f3759df));
+        static RNG: Cell<Wrapping<u32>> = const { Cell::new(Wrapping(0x5f3759df)) };
     }
 
     RNG.with(|rng| {

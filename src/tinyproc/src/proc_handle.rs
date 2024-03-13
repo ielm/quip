@@ -6,7 +6,7 @@ use crate::proc_stack::ProcStack;
 use crate::state::*;
 use std::fmt::{self, Debug, Formatter};
 use std::future::Future;
-use std::marker::{PhantomData, Unpin};
+use std::marker::PhantomData;
 use std::pin::Pin;
 use std::ptr::NonNull;
 use std::sync::atomic::Ordering;

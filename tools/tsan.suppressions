@@ -1,6 +1,6 @@
 # Anything comes from dynamic affinity pinner and load balancer of
-# Bastion doesn't need concrete guarantees. They are not that crucial.
-race:bastion_executor::blocking
+# Quip doesn't need concrete guarantees. They are not that crucial.
+race:quip_executor::blocking
 
 # There is a bug for this. There is a dangling ref in the drop.
 # Read more about it here: https://github.com/rust-lang/rust/issues/55005

@@ -1,7 +1,7 @@
 #[cfg(feature = "tokio-runtime")]
 mod tokio_tests {
 
-    use bastion::prelude::*;
+    use quip::prelude::*;
 
     #[tokio::test]
     async fn test_simple_await() {
@@ -9,20 +9,20 @@ mod tokio_tests {
     }
 
     #[tokio::test]
-    async fn test_within_bastion() {
-        Bastion::init();
-        Bastion::start();
+    async fn test_within_quip() {
+        Quip::init();
+        Quip::start();
 
         test_within_children().await;
         test_within_message_receive().await;
         test_within_message_receive_blocking().await;
         test_within_message_receive_spawn().await;
 
-        Bastion::stop();
+        Quip::stop();
     }
 
     async fn test_within_children() {
-        Bastion::children(|children| {
+        Quip::children(|children| {
             children.with_exec(|_| async move {
                 tokio::time::sleep(std::time::Duration::from_nanos(1)).await;
                 Ok(())
@@ -32,7 +32,7 @@ mod tokio_tests {
     }
 
     async fn test_within_message_receive() {
-        let workers = Bastion::children(|children| {
+        let workers = Quip::children(|children| {
             children.with_exec(|ctx| async move {
                 msg! {
                     ctx.recv().await?,
@@ -67,7 +67,7 @@ mod tokio_tests {
     }
 
     async fn test_within_message_receive_blocking() {
-        let workers = Bastion::children(|children| {
+        let workers = Quip::children(|children| {
             children.with_exec(|ctx| async move {
                 msg! {
                     ctx.recv().await?,
@@ -105,7 +105,7 @@ mod tokio_tests {
     }
 
     async fn test_within_message_receive_spawn() {
-        let workers = Bastion::children(|children| {
+        let workers = Quip::children(|children| {
             children.with_exec(|ctx| async move {
                 msg! {
                     ctx.recv().await?,

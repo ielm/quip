@@ -26,7 +26,6 @@ use futures_timer::Delay;
 use fxhash::FxHashMap;
 use quip_executor::pool;
 use std::fmt::Debug;
-use std::future::Future;
 use std::pin::Pin;
 use std::sync::Arc;
 use std::task::Poll;

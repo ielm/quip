@@ -2,11 +2,11 @@
 
 extern crate test;
 
-use lightproc::proc_stack::ProcStack;
 use quip_executor::blocking;
 use std::thread;
 use std::time::Duration;
 use test::Bencher;
+use tinyproc::proc_stack::ProcStack;
 
 #[cfg(feature = "tokio-runtime")]
 mod tokio_benchs {

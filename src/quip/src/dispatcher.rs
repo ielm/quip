@@ -130,7 +130,7 @@ impl Recipient for RoundRobinHandler {
 
         let current_index = self.index.load(Ordering::SeqCst) % entries.len();
         self.index.store(current_index + 1, Ordering::SeqCst);
-        entries.get(current_index).map(std::clone::Clone::clone)
+        entries.get(current_index).cloned()
     }
 
     fn all(&self) -> Vec<ChildRef> {
@@ -623,14 +623,13 @@ impl GlobalDispatcher {
 
 #[cfg(test)]
 mod tests {
-    use crate::child_ref::ChildRef;
     use crate::context::QuipId;
     use crate::dispatcher::*;
-    use crate::envelope::{RefAddr, SignedMessage};
+    use crate::envelope::RefAddr;
     use crate::message::Msg;
     use crate::path::QuipPath;
     use futures::channel::mpsc;
-    use std::sync::{Arc, Mutex};
+    use std::sync::Mutex;
 
     #[derive(Clone)]
     struct CustomHandler {

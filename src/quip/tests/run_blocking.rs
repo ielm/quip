@@ -1,4 +1,4 @@
-use bastion::prelude::*;
+use quip::prelude::*;
 use std::sync::{
     atomic::{AtomicUsize, Ordering},
     Arc,
@@ -23,12 +23,12 @@ mod not_tokio_tests {
 }
 
 fn run() {
-    Bastion::init();
-    Bastion::start();
+    Quip::init();
+    Quip::start();
 
-    let c = Bastion::children(|children| {
+    let c = Quip::children(|children| {
         // We are creating the function to exec
-        children.with_exec(|ctx: BastionContext| {
+        children.with_exec(|ctx: QuipContext| {
             let received_messages = Arc::new(AtomicUsize::new(0));
             async move {
                 let received_messages = Arc::clone(&received_messages);
@@ -71,8 +71,8 @@ fn run() {
         })
         .collect::<Vec<_>>();
 
-    Bastion::stop();
-    Bastion::block_until_stopped();
+    Quip::stop();
+    Quip::block_until_stopped();
 
     assert_eq!((1..=100).map(|i| i).collect::<Vec<_>>(), output);
 }

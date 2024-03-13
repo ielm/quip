@@ -2,13 +2,13 @@
 
 extern crate test;
 
-use futures::future::join_all;
-use lightproc::proc_stack::ProcStack;
+// use futures::future::join_all;
 use quip_executor::blocking;
-use quip_executor::run::run;
+// use quip_executor::run::run;
 use std::thread;
 use std::time::Duration;
 use test::Bencher;
+use tinyproc::proc_stack::ProcStack;
 
 #[cfg(feature = "tokio-runtime")]
 mod tokio_benchs {

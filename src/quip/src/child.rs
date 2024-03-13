@@ -17,12 +17,10 @@ use futures::poll;
 use futures::prelude::*;
 use quip_executor::pool;
 use std::fmt::{self, Debug, Formatter};
-use std::future::Future;
 use std::pin::Pin;
 use std::sync::Arc;
 use std::task::{Context, Poll};
 use tinyproc::prelude::*;
-use tinyproc::proc_state::EmptyProcState;
 use tracing::{debug, error, trace, warn};
 
 pub(crate) struct Init(pub(crate) Box<dyn Fn(QuipContext) -> Exec + Send>);

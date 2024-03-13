@@ -11,7 +11,6 @@ use crate::message::{Message, QuipMessage};
 use crate::path::QuipPath;
 use crate::system::SYSTEM;
 use crate::{child_ref::ChildRef, distributor::Distributor};
-use std::cmp::{Eq, PartialEq};
 use std::fmt::Debug;
 use std::sync::Arc;
 use tracing::{debug, trace};

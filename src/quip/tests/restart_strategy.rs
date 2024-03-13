@@ -1,4 +1,4 @@
-use bastion::supervisor::{ActorRestartStrategy, RestartPolicy, RestartStrategy};
+use quip::supervisor::{ActorRestartStrategy, RestartPolicy, RestartStrategy};
 use std::time::Duration;
 
 #[test]

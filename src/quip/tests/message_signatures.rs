@@ -1,21 +1,21 @@
-extern crate bastion;
+extern crate quip;
 
-use bastion::prelude::*;
+use quip::prelude::*;
 use std::panic;
 
 fn setup() {
-    Bastion::init();
-    Bastion::start();
+    Quip::init();
+    Quip::start();
 }
 
 fn teardown() {
-    Bastion::stop();
-    Bastion::block_until_stopped();
+    Quip::stop();
+    Quip::block_until_stopped();
 }
 
 fn spawn_responders() -> ChildrenRef {
-    Bastion::children(|children: Children| {
-        children.with_exec(move |ctx: BastionContext| async move {
+    Quip::children(|children: Children| {
+        children.with_exec(move |ctx: QuipContext| async move {
             msg! { ctx.recv().await?,
                 msg: &'static str =!> {
                     if msg == "Hello" {
@@ -49,7 +49,7 @@ mod tokio_tests {
     #[tokio::test]
     async fn answer_and_tell_signatures() {
         setup();
-        Bastion::spawn(run).unwrap();
+        Quip::spawn(run).unwrap();
         teardown();
     }
 }
@@ -61,12 +61,12 @@ mod no_tokio_tests {
     #[test]
     fn answer_and_tell_signatures() {
         setup();
-        Bastion::spawn(run).unwrap();
+        Quip::spawn(run).unwrap();
         teardown();
     }
 }
 
-async fn run(ctx: BastionContext) -> Result<(), ()> {
+async fn run(ctx: QuipContext) -> Result<(), ()> {
     let responders = spawn_responders();
     let responder = &responders.elems()[0];
     let answer = ctx.ask(&responder.addr(), "Hello").unwrap();
@@ -85,4 +85,4 @@ async fn run(ctx: BastionContext) -> Result<(), ()> {
     Ok(())
 }
 
-// TODO: anonymous signatures Bastion::* methods
+// TODO: anonymous signatures Quip::* methods

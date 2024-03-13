@@ -124,7 +124,7 @@ fn main() {
     Quip::block_until_stopped();
 }
 
-// Compiling quip v0.3.5-alpha (/home/ignition/Projects/oss/bastion/src/bastion)
+// Compiling quip v0.3.5-alpha (/home/user/code/oss/quip/src/quip)
 // Finished dev [unoptimized + debuginfo] target(s) in 1.07s
 //  Running `target/debug/examples/fibonacci`
 // [2020-05-08T14:00:53Z INFO  quip::system] System: Initializing.

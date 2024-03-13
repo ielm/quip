@@ -49,7 +49,6 @@
 use crossbeam_epoch::{self as epoch, Atomic, Owned};
 use crossbeam_utils::{Backoff, CachePadded};
 use std::cell::{Cell, UnsafeCell};
-use std::iter::FromIterator;
 use std::marker::PhantomData;
 use std::mem::{self, ManuallyDrop};
 use std::sync::atomic::{self, AtomicIsize, AtomicPtr, AtomicUsize, Ordering};

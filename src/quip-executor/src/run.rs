@@ -20,7 +20,7 @@ use tinyproc::proc_stack::ProcStack;
 ///
 /// # Example
 /// ```rust
-/// use bastion_executor::prelude::*;
+/// use quip_executor::prelude::*;
 /// use tinyproc::prelude::*;
 /// let mut sum = 0;
 ///
@@ -80,7 +80,7 @@ where
         // Note that each invocation of `block` needs its own parker. In particular, if `block`
         // recursively calls itself, we must make sure that each recursive call uses a distinct
         // parker instance.
-        static CACHE: Cell<Option<Arc<Parker>>> = Cell::new(None);
+        static CACHE: Cell<Option<Arc<Parker>>> = const { Cell::new(None) };
     }
 
     pin_utils::pin_mut!(f);

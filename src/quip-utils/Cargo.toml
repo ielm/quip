@@ -14,7 +14,7 @@ repository = "https://github.com/ielm/quip"
 documentation = "https://docs.rs/quip"
 readme = "README.md"
 license = "Apache-2.0/MIT"
-edition = "2018"
+edition = "2021"
 
 [badges]
 travis-ci = { repository = "ielm/quip", branch = "master" }

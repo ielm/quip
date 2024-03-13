@@ -27,7 +27,7 @@ use tracing::trace;
 ///
 /// # Example
 /// ```rust
-/// use bastion_executor::prelude::*;
+/// use quip_executor::prelude::*;
 /// use tinyproc::prelude::*;
 ///
 /// # #[cfg(feature = "tokio-runtime")]
@@ -125,12 +125,12 @@ pub(crate) fn schedule(t: TinyProc) {
 ///
 /// Low watermark value, defines the bare minimum of the pool.
 /// Spawns initial thread set.
-/// Can be configurable with env var `BASTION_BLOCKING_THREADS` at runtime.
+/// Can be configurable with env var `QUIP_BLOCKING_THREADS` at runtime.
 #[inline]
 fn low_watermark() -> &'static u64 {
     lazy_static! {
         static ref LOW_WATERMARK: u64 = {
-            env::var_os("BASTION_BLOCKING_THREADS")
+            env::var_os("QUIP_BLOCKING_THREADS")
                 .map(|x| x.to_str().unwrap().parse::<u64>().unwrap())
                 .unwrap_or(DEFAULT_LOW_WATERMARK)
         };
@@ -211,7 +211,7 @@ static POOL: Lazy<Pool> = Lazy::new(|| {
     {
         let runner = Arc::new(AsyncRunner {
             // We use current() here instead of try_current()
-            // because we want bastion to crash as soon as possible
+            // because we want quip to crash as soon as possible
             // if there is no available runtime.
             runtime_handle: tokio::runtime::Handle::current(),
         });

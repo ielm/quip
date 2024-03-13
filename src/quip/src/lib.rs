@@ -47,7 +47,6 @@
 //! [fort]: https://docs.rs/fort/
 //!
 
-// #![doc(html_logo_url = "https://raw.githubusercontent.com/ielm/quip/master/img/bastion-logo.png")]
 // Force missing implementations
 #![warn(missing_docs)]
 #![warn(missing_debug_implementations)]

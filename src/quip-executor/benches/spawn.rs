@@ -3,11 +3,11 @@
 extern crate test;
 
 use futures_timer::Delay;
-use lightproc::proc_stack::ProcStack;
 use quip_executor::load_balancer;
 use quip_executor::prelude::spawn;
 use std::time::Duration;
 use test::Bencher;
+use tinyproc::proc_stack::ProcStack;
 
 #[cfg(feature = "tokio-runtime")]
 mod tokio_benchs {

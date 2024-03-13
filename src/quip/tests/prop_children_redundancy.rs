@@ -1,5 +1,5 @@
-use bastion::prelude::*;
 use proptest::prelude::*;
+use quip::prelude::*;
 use std::sync::Once;
 
 static START: Once = Once::new();
@@ -34,15 +34,15 @@ mod not_tokio_proptests {
 
 fn test_with_usize(r: usize) {
     START.call_once(|| {
-        Bastion::init();
+        Quip::init();
     });
-    Bastion::start();
+    Quip::start();
 
-    Bastion::children(|children| {
+    Quip::children(|children| {
         children
             // shrink over the redundancy
             .with_redundancy(r)
-            .with_exec(|_ctx: BastionContext| {
+            .with_exec(|_ctx: QuipContext| {
                 async move {
                     // It's a proptest,
                     // we just don't want the loop

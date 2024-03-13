@@ -1,5 +1,5 @@
-use bastion::prelude::*;
 use proptest::prelude::*;
+use quip::prelude::*;
 use std::sync::Once;
 
 static START: Once = Once::new();
@@ -32,12 +32,12 @@ mod not_tokio_proptests {
 
 fn test_with_message(message: String) {
     START.call_once(|| {
-        Bastion::init();
+        Quip::init();
     });
-    Bastion::start();
+    Quip::start();
 
-    if let Ok(_chrn) = Bastion::children(|children: Children| {
-        children.with_exec(move |ctx: BastionContext| {
+    if let Ok(_chrn) = Quip::children(|children: Children| {
+        children.with_exec(move |ctx: QuipContext| {
             async move {
                 msg! { ctx.recv().await?,
                     ref _msg: &'static str => {};
@@ -51,6 +51,6 @@ fn test_with_message(message: String) {
         })
     }) {
         let message: &'static str = Box::leak(message.into_boxed_str());
-        Bastion::broadcast(message).expect("broadcast failed");
+        Quip::broadcast(message).expect("broadcast failed");
     }
 }

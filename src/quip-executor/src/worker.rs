@@ -22,7 +22,7 @@ pub fn current() -> ProcStack {
 }
 
 thread_local! {
-    static STACK: Cell<*const ProcStack> = Cell::new(ptr::null_mut());
+    static STACK: Cell<*const ProcStack> = const { Cell::new(ptr::null_mut()) };
 }
 
 ///

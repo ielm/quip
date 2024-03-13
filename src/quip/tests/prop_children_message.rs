@@ -1,5 +1,5 @@
-use bastion::prelude::*;
 use proptest::prelude::*;
+use quip::prelude::*;
 use std::sync::Arc;
 use std::sync::Once;
 
@@ -35,14 +35,14 @@ mod not_tokio_proptests {
 
 fn test_with_message(message: String) {
     START.call_once(|| {
-        Bastion::init();
+        Quip::init();
     });
-    Bastion::start();
+    Quip::start();
 
     let message = Arc::new(message);
 
-    let _ = Bastion::children(|children| {
-        children.with_exec(move |ctx: BastionContext| {
+    let _ = Quip::children(|children| {
+        children.with_exec(move |ctx: QuipContext| {
             let message = (*message).clone();
             async move {
                 let message: &'static str = Box::leak(message.into_boxed_str());

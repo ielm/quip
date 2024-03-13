@@ -4,7 +4,6 @@
 
 use crate::context::{QuipId, NIL_ID};
 use std::fmt;
-use std::result::Result;
 
 #[derive(Clone)]
 /// Represents a Path for a System, Supervisor, Children or Child.

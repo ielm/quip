@@ -66,7 +66,7 @@
 *
 * [dependencies]
 * anyhow = "1.0.40"
-* quip = { git = "https://github.com/bastion-rs/bastion" }
+* quip = { git = "https://github.com/ielm/quip" }
 * rand = "0.8.3"
 * tracing = "0.1.25"
 * tracing-subscriber = "0.2.17"

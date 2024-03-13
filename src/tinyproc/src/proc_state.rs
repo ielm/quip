@@ -33,7 +33,7 @@ use std::fmt;
 use std::sync::{Arc, Mutex};
 
 ///
-/// State trait to implement a state for Bastion
+/// State trait to implement a state for Quip
 pub trait State: Send + Sync + AsAny + 'static {}
 
 ///
