@@ -15,11 +15,9 @@ jobs:
       - name: Install
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: nightly-2021-03-20
+          toolchain: nightly
           override: true
       - uses: davidB/rust-cargo-make@v1
-        with:
-          version: '0.30.0'
       - name: Sanitizers
         env:
           RUST_BACKTRACE: full
