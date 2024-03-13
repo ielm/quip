@@ -1,7 +1,8 @@
 <h1 align="center">Quip</h1>
 <h2 align="center">Highly-available Distributed Fault-tolerant Runtime</h2>
 
-<h3 color="red" align="center">This project is under heavy development. It is not ready for production use yet.</h3>
+$${\textsf{\color{red} This project is under heavy development. It is not ready
+for production use yet.}}$$
 
 <p align="center">
 [![Crates.io](https://img.shields.io/crates/v/quip.svg)](https://crates.io/crates/quip)
