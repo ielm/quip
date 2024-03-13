@@ -4,11 +4,9 @@
 $${\textsf{\color{red} This project is under heavy development. It is not ready
 for production use yet.}}$$
 
-<p align="center">
 [![Crates.io](https://img.shields.io/crates/v/quip.svg)](https://crates.io/crates/quip)
 [![Documentation](https://docs.rs/quip/badge.svg)](https://docs.rs/quip)
 [![Build Status](https://github.com/ielm/quip/workflows/CI/badge.svg)](https://github.com/ielm/quip)
-</p>
 
 Quip is a maintained fork of Bastion - a highly-available, fault-tolerant
 runtime system with dynamic, dispatch-oriented, lightweight process model. 
