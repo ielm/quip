@@ -40,9 +40,11 @@ pub struct Config {
 }
 
 #[derive(PartialEq, Eq, Debug, Clone)]
+#[derive(Default)]
 pub(crate) enum Backtraces {
     /// Shows all backtraces, like an application without
     /// Quip would.
+    #[default]
     Show,
     // TODO: Catch,
     /// Hides all backtraces.
@@ -155,8 +157,4 @@ impl Backtraces {
     }
 }
 
-impl Default for Backtraces {
-    fn default() -> Self {
-        Backtraces::Show
-    }
-}
+

@@ -412,7 +412,7 @@ impl Child {
         let global_dispatcher = SYSTEM.dispatcher();
         // FIXME: Pass the module name explicitly?
         let module_name = module_path!().to_string();
-        global_dispatcher.register(used_dispatchers, &child_ref, module_name)
+        global_dispatcher.register(used_dispatchers, child_ref, module_name)
     }
 
     /// Adds the actor into each distributor declared in the parent node.
@@ -434,7 +434,7 @@ impl Child {
     fn remove_from_distributors(parent: &ChildrenRef, child_ref: &ChildRef) -> AnyResult<()> {
         let distributors = parent.distributors();
         let global_dispatcher = SYSTEM.dispatcher();
-        global_dispatcher.remove_recipient(distributors, &child_ref)?;
+        global_dispatcher.remove_recipient(distributors, child_ref)?;
         Ok(())
     }
 
@@ -442,7 +442,7 @@ impl Child {
     fn remove_from_dispatchers(parent: &ChildrenRef, child_ref: &ChildRef) {
         let used_dispatchers = parent.dispatchers();
         let global_dispatcher = SYSTEM.dispatcher();
-        global_dispatcher.remove(used_dispatchers, &child_ref);
+        global_dispatcher.remove(used_dispatchers, child_ref);
     }
 
     #[cfg(feature = "scaling")]

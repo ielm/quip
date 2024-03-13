@@ -394,9 +394,9 @@ impl System {
             match poll!(&mut self.waiting.next()) {
                 Poll::Ready(Some(Some(supervisor))) => {
                     let id = supervisor.id();
-                    self.bcast.unregister(&id);
+                    self.bcast.unregister(id);
 
-                    if self.restart.remove(&id) {
+                    if self.restart.remove(id) {
                         self.recover(supervisor).await;
                     } else {
                         supervisor.callbacks().after_stop();
