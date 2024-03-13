@@ -19,8 +19,8 @@ where
 {
     lazy_static! {
         // A channel that holds scheduled procs.
-        static ref QUEUE: Sender<tinyproc> = {
-            let (sender, receiver) = unbounded::<tinyproc>();
+        static ref QUEUE: Sender<TinyProc> = {
+            let (sender, receiver) = unbounded::<TinyProc>();
 
             // Start the executor thread.
             thread::spawn(move || {
@@ -50,7 +50,7 @@ where
         });
 
     let schedule = |t| QUEUE.send(t).unwrap();
-    let (proc, handle) = tinyproc::recoverable(future, schedule, stack);
+    let (proc, handle) = TinyProc::recoverable(future, schedule, stack);
 
     proc.schedule();
 

@@ -174,7 +174,7 @@ impl Debug for DynamicPoolManager {
 
 impl DynamicPoolManager {
     pub fn new(static_threads: usize, runner: Arc<dyn DynamicRunner + Send + Sync>) -> Self {
-        let dynamic_threads = 1.max(num_cpus::get().checked_sub(static_threads).unwrap_or(0));
+        let dynamic_threads = 1.max(num_cpus::get().saturating_sub(static_threads));
         Self {
             static_threads,
             dynamic_threads,
@@ -327,8 +327,8 @@ impl DynamicPoolManager {
     #[inline]
     fn calculate_ema(freq_queue: &VecDeque<u64>) -> f64 {
         freq_queue.iter().enumerate().fold(0_f64, |acc, (i, freq)| {
-            acc + ((*freq as f64) * ((1_f64 - EMA_COEFFICIENT).powf(i as f64) as f64))
-        }) * EMA_COEFFICIENT as f64
+            acc + ((*freq as f64) * (1_f64 - EMA_COEFFICIENT).powf(i as f64))
+        }) * EMA_COEFFICIENT
     }
 
     /// Adaptive pool scaling function

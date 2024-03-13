@@ -124,10 +124,7 @@ impl<T> Buffer<T> {
 
 impl<T> Clone for Buffer<T> {
     fn clone(&self) -> Buffer<T> {
-        Buffer {
-            ptr: self.ptr,
-            cap: self.cap,
-        }
+        *self
     }
 }
 
@@ -918,7 +915,7 @@ impl<T> Stealer<T> {
         }
 
         let default_time_ahead = (len as usize - 1) / 2;
-        if amount > default_time_ahead as usize {
+        if amount > default_time_ahead {
             amount = default_time_ahead;
         }
 
@@ -1682,7 +1679,7 @@ impl<T> Drop for Injector<T> {
                 if offset < BLOCK_CAP {
                     // Drop the task in the slot.
                     let slot = (*block).slots.get_unchecked(offset);
-                    ManuallyDrop::drop(&mut *(*slot).task.get());
+                    ManuallyDrop::drop(&mut *slot.task.get());
                 } else {
                     // Deallocate the block and move to the next one.
                     let next = (*block).next.load(Ordering::Relaxed);

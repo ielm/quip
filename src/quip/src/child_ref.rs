@@ -1,8 +1,10 @@
+// FIXME: remove and add custom errors
+#![allow(clippy::result_unit_err)]
 //!
 //! Allows users to communicate with Child through the mailboxes.
 use crate::context::QuipId;
 use crate::envelope::{Envelope, RefAddr};
-use crate::message::{Answer, QuipMessage, Message};
+use crate::message::{Answer, Message, QuipMessage};
 use crate::path::QuipPath;
 use crate::{broadcast::Sender, prelude::SendError};
 use std::cmp::{Eq, PartialEq};
@@ -41,12 +43,7 @@ impl ChildRef {
         }
     }
 
-    pub(crate) fn new(
-        id: QuipId,
-        sender: Sender,
-        name: String,
-        path: Arc<QuipPath>,
-    ) -> ChildRef {
+    pub(crate) fn new(id: QuipId, sender: Sender, name: String, path: Arc<QuipPath>) -> ChildRef {
         ChildRef {
             id,
             sender,

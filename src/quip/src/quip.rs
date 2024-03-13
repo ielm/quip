@@ -1,3 +1,5 @@
+// FIXME: remove and add custom errors
+#![allow(clippy::result_unit_err)]
 use crate::broadcast::{Broadcast, Parent};
 use crate::children::Children;
 use crate::children_ref::ChildrenRef;

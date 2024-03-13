@@ -3,8 +3,8 @@
 extern crate test;
 
 use quip_executor::prelude::*;
-use lightproc::proc_stack::ProcStack;
 use test::{black_box, Bencher};
+use tinyproc::proc_stack::ProcStack;
 
 #[bench]
 fn increment(b: &mut Bencher) {

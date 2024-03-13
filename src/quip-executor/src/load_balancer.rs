@@ -216,7 +216,7 @@ pub fn stats() -> &'static Stats {
     lazy_static! {
         static ref LOCKLESS_STATS: Stats = Stats::new(*core_count());
     }
-    &*LOCKLESS_STATS
+    &LOCKLESS_STATS
 }
 
 ///
@@ -230,5 +230,5 @@ pub fn core_count() -> &'static usize {
 /// Retrieve cores for the runtime scheduling purposes
 #[inline]
 pub fn get_cores() -> &'static [CoreId] {
-    &*LOAD_BALANCER.cores
+    &LOAD_BALANCER.cores
 }

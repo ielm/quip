@@ -1,10 +1,10 @@
 use crossbeam::channel::{unbounded, Sender};
 use futures_executor as executor;
 use lazy_static::lazy_static;
-use tinyproc::prelude::*;
-use tinyproc::proc_state::EmptyProcState;
 use std::future::Future;
 use std::thread;
+use tinyproc::prelude::*;
+use tinyproc::proc_state::EmptyProcState;
 
 fn spawn_on_thread<F, R>(future: F) -> RecoverableHandle<R>
 where
@@ -13,8 +13,8 @@ where
 {
     lazy_static! {
         // A channel that holds scheduled procs.
-        static ref QUEUE: Sender<tinyproc> = {
-            let (sender, receiver) = unbounded::<tinyproc>();
+        static ref QUEUE: Sender<TinyProc> = {
+            let (sender, receiver) = unbounded::<TinyProc>();
 
             // Start the executor thread.
             thread::spawn(move || {
@@ -28,7 +28,7 @@ where
     }
 
     let schedule = |t| QUEUE.send(t).unwrap();
-    let (proc, handle) = tinyproc::recoverable(
+    let (proc, handle) = TinyProc::recoverable(
         future,
         schedule,
         ProcStack::default()

@@ -1,10 +1,10 @@
 use crossbeam::channel;
 use futures_executor as executor;
-use tinyproc::prelude::*;
-use tinyproc::proc_state::EmptyProcState;
 use std::future::Future;
 use std::sync::Arc;
 use std::thread;
+use tinyproc::prelude::*;
+use tinyproc::proc_state::EmptyProcState;
 
 fn spawn_on_thread<F, R>(fut: F) -> ProcHandle<R>
 where
@@ -21,7 +21,7 @@ where
     };
 
     let schedule = move |t| s.upgrade().unwrap().send(t).unwrap();
-    let (proc, handle) = tinyproc::build(
+    let (proc, handle) = TinyProc::build(
         future,
         schedule,
         ProcStack::default()

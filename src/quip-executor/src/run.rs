@@ -4,7 +4,6 @@
 //!
 use crate::worker;
 use crossbeam_utils::sync::Parker;
-use tinyproc::proc_stack::ProcStack;
 use std::cell::{Cell, UnsafeCell};
 use std::future::Future;
 use std::mem;
@@ -12,6 +11,7 @@ use std::mem::ManuallyDrop;
 use std::pin::Pin;
 use std::sync::Arc;
 use std::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};
+use tinyproc::proc_stack::ProcStack;
 
 ///
 /// This method blocks the current thread until passed future is resolved with an output (including the panic).
@@ -87,6 +87,8 @@ where
 
     CACHE.with(|cache| {
         // Reuse a cached parker or create a new one for this invocation of `block`.
+        // FIXME: https://rust-lang.github.io/rust-clippy/master/index.html#/arc_with_non_send_sync
+        #[allow(clippy::arc_with_non_send_sync)]
         let arc_parker: Arc<Parker> = cache.take().unwrap_or_else(|| Arc::new(Parker::new()));
 
         let ptr = (&*arc_parker as *const Parker) as *const ();
@@ -110,6 +112,8 @@ fn vtable() -> &'static RawWakerVTable {
     unsafe fn clone_raw(ptr: *const ()) -> RawWaker {
         #![allow(clippy::redundant_clone)]
         let arc = ManuallyDrop::new(Arc::from_raw(ptr as *const Parker));
+        // FIXME: https://rust-lang.github.io/rust-clippy/master/index.html#/forget_non_drop
+        #[allow(clippy::forget_non_drop)]
         mem::forget(arc.clone());
         RawWaker::new(ptr, vtable())
     }
