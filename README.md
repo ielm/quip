@@ -1,73 +1,10 @@
-<div align="center">
-  <img src="https://github.com/bastion-rs/bastion/blob/master/img/bastion.png"><br>
-</div>
-
----
-
-<table>
-  <tr>
-    <td>Latest Release</td>
-    <td>
-      <a href="https://crates.io/crates/quip">
-      <img alt="Crates.io" src="https://img.shields.io/crates/v/quip.svg?style=popout-square">
-      </a>
-    </td>
-    <td>License</td>
-    <td>
-      <a href="https://github.com/ielm/quip/blob/master/LICENSE">
-      <img alt="License" src="https://img.shields.io/crates/l/quip.svg?style=popout-square">
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td>Doc [Quip]</td>
-    <td>
-      <a href="https://docs.rs/quip">
-      <img alt="Documentation (quip)" src="https://img.shields.io/badge/rustdoc-quip-blue.svg" />
-      </a>
-    </td>
-    <td>Downloads</td>
-    <td>
-      <a href="https://crates.io/crates/quip">
-      <img alt="Crates.io" src="https://img.shields.io/crates/d/quip.svg?style=popout-square">
-      </a>
-    </td>
-  </tr>
-  <tr>
-  <td>Doc [quip Executor]</td>
-    <td>
-      <a href="https://docs.rs/quip-executor">
-      <img alt="Documentation (quip Executor)" src="https://img.shields.io/badge/rustdoc-quip-blue.svg" />
-      </a>
-    </td>
-    <td>Discord</td>
-    <td>
-      <a href="https://discord.gg/DqRqtRT">
-      <img src="https://img.shields.io/discord/628383521450360842.svg?logo=discord" />
-      </a>
-    </td>
-  </tr>
-  <tr>
-  </tr>
-  <tr>
-    <td>Doc [LightProc]</td>
-    <td>
-      <a href="https://docs.rs/lightproc">
-      <img alt="Documentation (LightProc)" src="https://img.shields.io/badge/rustdoc-lightproc-blue.svg" />
-      </a>
-    </td>
-    <td>Build Status</td>
-    <td>
-      <a href="https://github.com/quip/quip/actions">
-      <img alt="Build Status" src="https://github.com/ielm/quip/workflows/CI/badge.svg" />
-      </a>
-    </td>
-  </tr>
-</table>
-
----
-
+<h1 align="center">Quip</h1>
 <h1 align="center">Highly-available Distributed Fault-tolerant Runtime</h1>
+
+[![Crates.io](https://img.shields.io/crates/v/quip.svg)](https://crates.io/crates/quip)
+[![Documentation](https://docs.rs/quip/badge.svg)](https://docs.rs/quip)
+[![Build Status](
+
 
 Quip is a fork of Bastion, a highly-available, fault-tolerant runtime system with dynamic, dispatch-oriented, lightweight process model. It supplies actor-model-like concurrency with a lightweight process implementation and utilizes all of the system resources efficiently guaranteeing of at-most-once message delivery.
 
@@ -112,9 +49,13 @@ Check the [getting started example](https://github.com/ielm/quip/blob/master/src
 ## Guarantees
 * At most once delivery for all messages.
 * Completely asynchronous system design.
-* Asynchronous program boundaries with [fort](https://github.com/ielm/fort).
-* Dynamic supervision of supervisors (adding a subtree later during the execution)
-* Lifecycle management both at `futures` and [tinyproc](https://github.com/ielm/quip/tree/master/src/tinyproc) layers.
+* Asynchronous program boundaries with
+  [fort](https://github.com/bastion-rs/fort).
+* Dynamic supervision of supervisors (adding a subtree later during the 
+  execution)
+* Lifecycle management both at `futures` and 
+  [tinyproc](https://github.com/ielm/quip/tree/master/src/tinyproc) 
+  layers.
 * Faster middleware development.
 * Fault tolerance above all.
 
@@ -136,19 +77,23 @@ without knowing how everything works under the hood. We hope to find you
 on this section soon.
 
 ### [Nuclei](https://github.com/vertexclique/nuclei)
-Nuclei is proactive IO system that can be independently used without executor restriction. It is also powering Quip's IO system.
-You can learn more about Nuclei [here](https://github.com/vertexclique/nuclei), check out Nuclei's repo for more sophisticated use cases.
+Nuclei is proactive IO system that can be independently used without 
+executor restriction. It is also powering Quip's IO system.
+You can learn more about Nuclei [here](https://github.com/vertexclique/nuclei), 
+check out Nuclei's repo for more sophisticated use cases.
 
 ### [Tinyproc](https://github.com/ielm/quip/tree/master/src/tinyproc)
 
 Tinyproc is Lightweight Process abstraction for Rust.
 
-It uses futures with lifecycle callbacks to implement Erlang like processes and contains basic pid to identify processes.
-All panics inside futures are propagated to upper layers.
+It uses futures with lifecycle callbacks to implement Erlang like 
+processes and contains basic pid to identify processes. All panics inside 
+futures are propagated to upper layers.
 
 ### [Quip Executor](https://github.com/ielm/quip/tree/master/src/quip-executor)
 
-Quip Executor is NUMA-aware SMP based Fault-tolerant Executor, highly-available and async communication oriented.
+Quip Executor is NUMA-aware SMP based Fault-tolerant Executor, 
+highly-available and async communication oriented.
 
 It's independent of it's framework implementation. It uses tinyproc to 
 encapsulate and provide fault-tolerance to your future based workloads. 
@@ -176,34 +121,10 @@ siblings as well. One-for-one supervision is used at the root supervisor,
 while child groups may have different strategies like rest-for-one or 
 one-for-all.
 
-![Quip Architecture](img/bastion-architecture.png)
-
-## Community
-<!-- ### Getting Help -->
-<!-- Please head to our [Discord](https://discord.gg/DqRqtRT) or use [StackOverflow](https://stackoverflow.com/questions/tagged/bastion) -->
-
-<!-- ### Discussion and Development -->
-<!-- We use [Discord](https://discord.gg/DqRqtRT) for development discussions. Also please don't hesitate to open issues on GitHub ask for features, report bugs, comment on design and more! -->
-<!-- More interaction and more ideas are better! -->
-
-### Contributing to Quip [![Open Source Helpers](https://www.codetriage.com/ielm/quip/badges/users.svg)](https://www.codetriage.com/ielm/quip)
-
-All contributions, bug reports, bug fixes, documentation improvements, 
-enhancements and ideas are welcome.
-
-<!-- A detailed overview on how to contribute can be found in the  [CONTRIBUTING guide](https://github.com/bastion-rs/.github/blob/master/CONTRIBUTING.md) on GitHub[.](https://youtu.be/w55YCDzZjvA) -->
-
 ## License
 
-Licensed under either of
+Licensed under either of:
 
  * Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
  * MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
 
-at your option.
-
-<!-- [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbastion-rs%2Fbastion.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbastion-rs%2Fbastion?ref=badge_large) -->
-
-<!-- [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbastion-rs%2Fbastion.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbastion-rs%2Fbastion?ref=badge_shield) -->
-
-[Current Domain](https://cp.istanco.net/)
