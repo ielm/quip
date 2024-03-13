@@ -3,7 +3,6 @@
 extern crate test;
 
 use futures_timer::Delay;
-use quip_executor::load_balancer;
 use quip_executor::prelude::spawn;
 use std::time::Duration;
 use test::Bencher;

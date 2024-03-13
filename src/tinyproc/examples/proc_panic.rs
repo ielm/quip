@@ -4,7 +4,6 @@ use lazy_static::lazy_static;
 use std::future::Future;
 use std::thread;
 use tinyproc::prelude::*;
-use tinyproc::proc_state::EmptyProcState;
 
 fn spawn_on_thread<F, R>(future: F) -> RecoverableHandle<R>
 where

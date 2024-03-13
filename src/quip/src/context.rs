@@ -14,6 +14,10 @@ use crossbeam_queue::SegQueue;
 use futures::pending;
 use futures::FutureExt;
 use futures_timer::Delay;
+
+#[feature(pin, async_await, await_macro, futures_api)]
+use futures::select;
+
 #[cfg(feature = "scaling")]
 use lever::table::lotable::LOTable;
 use std::fmt::{self, Display, Formatter};
@@ -521,7 +525,7 @@ impl QuipContext {
             self.id,
             timeout.as_millis()
         );
-        futures::select! {
+        select! {
             message = self.recv().fuse() => {
                 message.map_err(|_| ReceiveError::Other)
             },
@@ -828,7 +832,6 @@ impl Display for QuipId {
 mod context_tests {
     use super::*;
     use crate::prelude::*;
-    use crate::Quip;
     use std::panic;
 
     #[cfg(feature = "tokio-runtime")]

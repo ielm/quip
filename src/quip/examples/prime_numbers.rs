@@ -82,7 +82,7 @@ mod prime_number {
 
     fn get_min_bound(num_digits: usize) -> u128 {
         let lower_bound_iter =
-            iter::once(1usize).chain(iter::repeat(0usize).take(num_digits - 1 as usize));
+            iter::once(1usize).chain(iter::repeat(0usize).take(num_digits - 1_usize));
         digits_to_number(lower_bound_iter)
     }
 
@@ -154,9 +154,9 @@ async fn serve_prime_numbers(ctx: QuipContext) -> Result<(), ()> {
 // the quip
 mod client {
     use super::prime_number::Response;
-    use lightproc::prelude::*;
     use quip::prelude::*;
     use rayon::prelude::*;
+    use tinyproc::prelude::*;
     use tracing::{error, info};
 
     pub struct Result {

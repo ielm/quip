@@ -36,7 +36,7 @@ fn main() {
                         msg! { ctx.recv().await?,
                             stream: TcpStream =!> {
                                 let mut stream = stream;
-                                let mut data_buf = [0 as u8; 1024];
+                                let mut data_buf = [0_u8; 1024];
                                 let rb = stream.read(&mut data_buf).unwrap();
                                 println!("Received {} bytes", rb);
                                 let compressed = Encoder::new().compress_vec(&data_buf).unwrap();

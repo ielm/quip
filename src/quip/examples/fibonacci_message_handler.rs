@@ -18,7 +18,11 @@ fn fib(n: usize) -> usize {
 fn deserialize_into_fib_command(message: String) -> (String, usize) {
     let arguments: Vec<&str> = message.split(' ').collect();
     let command = arguments.first().map(|s| s.to_string()).unwrap_or_default();
-    let number = usize::from_str_radix(arguments.get(1).unwrap_or(&"0"), 10).unwrap_or(0);
+    let number = arguments
+        .get(1)
+        .unwrap_or(&"0")
+        .parse::<usize>()
+        .unwrap_or(0);
     (command, number)
 }
 
@@ -35,9 +39,10 @@ async fn fib_child_task(ctx: QuipContext) -> Result<(), ()> {
                         .expect("couldn't reply :(");
                 } else {
                     sender
-                        .reply(format!(
+                        .reply(
                             "I'm sorry I didn't understand the task I was supposed to do"
-                        ))
+                                .to_string(),
+                        )
                         .expect("couldn't reply :(");
                 }
             })

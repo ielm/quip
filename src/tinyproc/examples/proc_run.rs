@@ -4,7 +4,6 @@ use std::future::Future;
 use std::sync::Arc;
 use std::thread;
 use tinyproc::prelude::*;
-use tinyproc::proc_state::EmptyProcState;
 
 fn spawn_on_thread<F, R>(fut: F) -> ProcHandle<R>
 where

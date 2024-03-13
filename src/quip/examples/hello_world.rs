@@ -1,9 +1,5 @@
 use quip::prelude::*;
 
-///
-/// Prologue:
-/// The most classic of all examples and especially the essential hello, world!
-///
 async fn once_hello_world(ctx: QuipContext) -> Result<(), ()> {
     MessageHandler::new(ctx.recv().await?)
         .on_question(|question: &str, sender| {

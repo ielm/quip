@@ -121,96 +121,96 @@ mod tests {
     #[test]
     fn test_is_scheduled_returns_true() {
         let state = State::new(SCHEDULED);
-        assert_eq!(state.is_scheduled(), true);
+        assert!(state.is_scheduled());
     }
 
     #[test]
     fn test_is_scheduled_returns_false() {
         let state = State::new(0);
-        assert_eq!(state.is_scheduled(), false);
+        assert!(!state.is_scheduled());
     }
 
     #[test]
     fn test_is_running_returns_true() {
         let state = State::new(RUNNING);
-        assert_eq!(state.is_running(), true);
+        assert!(state.is_running());
     }
 
     #[test]
     fn test_is_running_returns_false() {
         let state = State::new(0);
-        assert_eq!(state.is_running(), false);
+        assert!(!state.is_running());
     }
 
     #[test]
     fn test_is_completed_returns_true() {
         let state = State::new(COMPLETED);
-        assert_eq!(state.is_completed(), true);
+        assert!(state.is_completed());
     }
 
     #[test]
     fn test_is_completed_returns_false() {
         let state = State::new(0);
-        assert_eq!(state.is_completed(), false);
+        assert!(!state.is_completed());
     }
 
     #[test]
     fn test_is_closed_returns_true() {
         let state = State::new(CLOSED);
-        assert_eq!(state.is_closed(), true);
+        assert!(state.is_closed());
     }
 
     #[test]
     fn test_is_closed_returns_false() {
         let state = State::new(0);
-        assert_eq!(state.is_closed(), false);
+        assert!(!state.is_closed());
     }
 
     #[test]
     fn test_is_handle_returns_true() {
         let state = State::new(HANDLE);
-        assert_eq!(state.is_handle(), true);
+        assert!(state.is_handle());
     }
 
     #[test]
     fn test_is_handle_returns_false() {
         let state = State::new(0);
-        assert_eq!(state.is_handle(), false);
+        assert!(!state.is_handle());
     }
 
     #[test]
     fn test_is_awaiter_returns_true() {
         let state = State::new(AWAITER);
-        assert_eq!(state.is_awaiter(), true);
+        assert!(state.is_awaiter());
     }
 
     #[test]
     fn test_is_awaiter_returns_false() {
         let state = State::new(0);
-        assert_eq!(state.is_awaiter(), false);
+        assert!(!state.is_awaiter());
     }
 
     #[test]
     fn test_is_locked_returns_true() {
         let state = State::new(LOCKED);
-        assert_eq!(state.is_locked(), true);
+        assert!(state.is_locked());
     }
 
     #[test]
     fn test_is_locked_returns_false() {
         let state = State::new(0);
-        assert_eq!(state.is_locked(), false);
+        assert!(!state.is_locked());
     }
 
     #[test]
     fn test_is_pending_returns_true() {
         let state = State::new(0);
-        assert_eq!(state.is_pending(), true);
+        assert!(state.is_pending());
     }
 
     #[test]
     fn test_is_pending_returns_false() {
         let state = State::new(COMPLETED);
-        assert_eq!(state.is_pending(), false);
+        assert!(!state.is_pending());
     }
 }
