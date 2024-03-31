@@ -17,7 +17,7 @@ enum Commands {
     Init(InitCommand),
 
     /// Get a problem
-    Get(StartCommand),
+    Get(PullCommand),
 }
 
 #[tokio::main]

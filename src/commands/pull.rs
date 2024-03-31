@@ -13,7 +13,7 @@ use crate::common::fetch::{self, get_initialized_problems, get_user_problems};
 /// This command cleans the problem directories and sets up a blank repository. Run this after
 /// you've cloned the repo to set up your own LeetCode problem manager.
 #[derive(Parser, Debug)]
-pub struct StartCommand {
+pub struct PullCommand {
     /// The problem ID to fetch
     #[arg(short, long)]
     id: Option<u32>,
@@ -23,7 +23,7 @@ pub struct StartCommand {
     force: bool,
 }
 
-impl StartCommand {
+impl PullCommand {
     pub async fn run(&self) {
         let _problems = get_user_problems().await;
 

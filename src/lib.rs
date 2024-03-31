@@ -9,7 +9,7 @@ pub mod util;
 
 pub mod prelude {
     pub use crate::commands::init::InitCommand;
-    pub use crate::commands::start::StartCommand;
+    pub use crate::commands::pull::PullCommand;
     pub use crate::consts::TITLE_TEXT;
 }
 
