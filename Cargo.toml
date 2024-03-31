@@ -6,8 +6,15 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "4.5.4", features = ["derive"] }
+anyhow = "1.0.81"
+clap = { version = "4.5.2", features = [
+	"derive",
+	"unstable-doc",
+] } # Remove unstable doc feature
+cliclack = "0.1.13"
+dialoguer = "0.11.0"
 dotenvy = { version = "0.15.7", features = ["clap"] }
+indicatif = "0.17.8"
 rand = "0.8.5"
 regex = "1.10.4"
 reqwest = { version = "0.12.2", features = ["json"] }
