@@ -1,9 +1,10 @@
-use std::thread::sleep;
+// use std::thread::sleep;
 
-use anyhow::anyhow;
+// use anyhow::anyhow;
 use clap::Parser;
-use cliclack::{input, intro, log, note, outro, select, spinner, Confirm};
-use dialoguer::Editor;
+// use cliclack::{input, intro, log, note, outro, select, spinner, Confirm};
+use cliclack::{input, log};
+// use dialoguer::Editor;
 use regex::Regex;
 
 use crate::common::deal::deal_problem;
@@ -54,7 +55,7 @@ impl PullCommand {
             return;
         }
 
-        log::info(format!("Fetching problem #{}", id));
+        log::info(format!("Fetching problem #{}", id)).expect("Failed to log");
         let problem = fetch::get_problem(id).await.unwrap_or_else(|| {
             panic!(
                 "Error: failed to get problem #{}\

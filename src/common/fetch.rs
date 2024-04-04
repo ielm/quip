@@ -1,11 +1,7 @@
 use regex::Regex;
 use serde_json::Value;
-use std::fmt::{Display, Error, Formatter};
+use std::fmt::Error;
 use std::fs;
-
-use reqwest::Response;
-
-use serde::{Deserialize, Serialize};
 
 use crate::common::problem::{Problem, Query, RawProblem, UserProblems};
 use crate::common::{GRAPHQL_URL, PROBLEMS_URL};

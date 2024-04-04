@@ -1,5 +1,6 @@
 use clap::{Parser, Subcommand};
-use cliclack::{intro, note, outro};
+use cliclack::{intro, outro};
+// use cliclack::{intro, note, outro};
 use quip::consts::TITLE_TEXT;
 use quip::prelude::*;
 
@@ -16,8 +17,8 @@ enum Commands {
     /// Initialize a base project
     Init(InitCommand),
 
-    /// Get a problem
-    Get(PullCommand),
+    /// Pull a problem from LeetCode
+    Pull(PullCommand),
 }
 
 #[tokio::main]
@@ -31,8 +32,8 @@ async fn main() {
         Commands::Init(init) => {
             init.run();
         }
-        Commands::Get(get) => {
-            get.run().await;
+        Commands::Pull(pull) => {
+            pull.run().await;
         }
     }
     outro("Good luck on your journey.\n").expect("Could not print outro");

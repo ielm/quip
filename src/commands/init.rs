@@ -1,9 +1,7 @@
 use std::thread::sleep;
 
-use anyhow::anyhow;
 use clap::Parser;
-use cliclack::{input, intro, log, note, outro, select, spinner, Confirm};
-use dialoguer::Editor;
+use cliclack::{spinner, Confirm};
 
 /// The initialization command
 /// This command cleans the problem directories and sets up a blank repository. Run this after

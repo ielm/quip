@@ -9,7 +9,7 @@ pub fn deal_problem(problem: &Problem, code: &CodeDefinition, write_mod_file: bo
     let file_name = format!(
         "p{:04}_{}",
         problem.question_id,
-        problem.title_slug.replace("-", "_")
+        problem.title_slug.replace('-', "_")
     );
 
     let file_path = Path::new("./src/problem").join(format!("{}.rs", file_name));
@@ -109,7 +109,7 @@ fn build_desc(content: &str) -> String {
         .replace("&#39;", "'")
         .replace("\n\n", "\n")
         .replace('\n', "\n * ")
-        .replace("\t", "  ")
+        .replace('\t', "  ")
 }
 
 fn insert_return_in_code(return_type: &str, code: &str) -> String {
