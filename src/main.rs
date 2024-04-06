@@ -1,7 +1,7 @@
 use clap::{Parser, Subcommand};
-use cliclack::{intro, outro};
+use cliclack::outro;
 // use cliclack::{intro, note, outro};
-use quip::consts::TITLE_TEXT;
+use quip::consts::CODE_TITLE_TEXT;
 use quip::prelude::*;
 
 /// The Quip CLI
@@ -24,8 +24,8 @@ enum Commands {
 #[tokio::main]
 async fn main() {
     dotenvy::dotenv().ok();
-    // println!("{}", TITLE_TEXT);
-    intro(TITLE_TEXT).expect("Could not print intro");
+    println!("{}", CODE_TITLE_TEXT);
+    // intro(TITLE_TEXT).expect("Could not print intro");
     let cli = Cli::parse();
 
     match cli.command {

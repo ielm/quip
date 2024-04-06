@@ -4,7 +4,9 @@
  * __PROBLEM_DESC__
  */
 
-pub struct Solution {}__EXTRA_USE__
+__EXTRA_USE__
+
+pub struct Solution {}
 
 // problem: __PROBLEM_LINK__
 // discuss: __DISCUSS_LINK__
