@@ -22,14 +22,21 @@ async fn init_client() -> Result<(reqwest::Client, reqwest::header::HeaderMap), 
         .build()
         .expect("Failed to build client");
     let mut headers = reqwest::header::HeaderMap::new();
-    let cookie = match std::env::var("LEETCODE_COOKIE") {
-        Ok(val) => val,
-        Err(_) => "".to_string(),
+
+    // Insert cookie only if it exists.
+    // TODO: Figure out how to automatically connect to leetcode without manual cookie.
+    let maybe_cookie = match std::env::var("LEETCODE_COOKIE") {
+        Ok(val) => Some(val),
+        Err(_) => None,
     };
-    headers.insert(
-        "Cookie",
-        reqwest::header::HeaderValue::from_str(&cookie).unwrap(),
-    );
+
+    if let Some(cookie) = maybe_cookie {
+        headers.insert(
+            "Cookie",
+            reqwest::header::HeaderValue::from_str(&cookie).unwrap(),
+        );
+    }
+
     headers.insert("Content-Type", "application/json".parse().unwrap());
     Ok((client, headers))
 }

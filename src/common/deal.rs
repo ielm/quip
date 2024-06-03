@@ -1,7 +1,8 @@
+use regex::Regex;
 use std::path::Path;
 use std::{fs, io::Write};
 
-use regex::Regex;
+use syn::{parse_file, ImplItem, Item, ItemFn, ReturnType, Type};
 
 use super::problem::{CodeDefinition, Problem};
 
@@ -17,6 +18,9 @@ pub fn deal_problem(problem: &Problem, code: &CodeDefinition, write_mod_file: bo
         println!("Problem {} already exists", file_name);
         return;
     }
+
+    let fixed_code = insert_return_type(&code.default_code);
+    // println!("{}", res);
 
     let template = fs::read_to_string("./template.rs").unwrap();
     let source = template
@@ -112,8 +116,114 @@ fn build_desc(content: &str) -> String {
         .replace('\t', "  ")
 }
 
+// pub enum SolutionReturnType {
+//     Integer,
+//     Double,
+//     String,
+//     Boolean,
+//     NoReturn,
+// }
+
+fn insert_return_type(code: &str) -> String {
+    let type_re = Regex::new(r"\s+->\s+([a-zA-Z0-9<>_]+)\s+\{[\s*\n*.*]*}").unwrap();
+
+    // println!("Code: {}", code);
+
+    let rtype = type_re
+        .captures(code)
+        .unwrap()
+        .get(1)
+        .unwrap()
+        .as_str()
+        .to_string();
+
+    // println!("{}", rtype);
+
+    let sblock_re = Regex::new(r"\{[\s+\n]+}").unwrap();
+
+    // match on rtypes and insert the correct return value
+
+    let syntax_tree = parse_file(code).unwrap();
+
+    for item in syntax_tree.items {
+        extract_block_details(item.clone());
+        if let syn::Item::Fn(item_fn) = item {
+            if let Some(return_type) = extract_return_type(&item_fn) {
+                println!("Function: {}", item_fn.sig.ident);
+            }
+        }
+    }
+
+    code.to_string()
+}
+
+fn extract_block_details(item: Item) {
+    if let Item::Impl(imp) = item {
+        for item in imp.items {
+            if let ImplItem::Fn(item_fn) = item {
+                // println!("\nFunction: {:#?}", item_fn);
+                let sig = &item_fn.sig;
+                let out = &sig.output;
+                // println!("Function: {:#?}", out);
+                match out {
+                    ReturnType::Default => {}
+                    ReturnType::Type(_, ty) => {
+                        println!("Return Type: {:#?}", ty);
+
+                        match **ty {
+                            Type::Path(ref path) => {
+                                // println!("Return Type: {:#?}", path);
+                                for seg in &path.path.segments {
+                                    // println!("Return Type: {:#?}", seg.ident);
+                                    match seg.ident.to_string().as_str() {
+                                        "Option" => {
+                                            println!("Option");
+                                        }
+
+                                        "Vec" => {
+                                            println!("Vec");
+                                        }
+
+                                        _ => {
+                                            println!("{}", seg.ident);
+                                        }
+                                    }
+                                }
+                            }
+                            _ => {
+                                todo!()
+                            }
+                        }
+
+                        // match ty {
+                        //     Type::Path(path) => {
+                        //         println!("Return Type: {:#?}", path);
+                        //     }
+                        //     _ => {}
+                        // }
+                        //
+                        // if ty.segments.len() == 1 {
+                        //     println!("Return Type: {:#?}", ty.segments[0].ident);
+                        // }
+                    }
+                }
+            }
+        }
+    }
+}
+
+fn extract_return_type(item_fn: &ItemFn) -> Option<&Type> {
+    match &item_fn.sig.output {
+        ReturnType::Default => None,
+        ReturnType::Type(_, ty) => Some(ty),
+    }
+}
+
 fn insert_return_in_code(return_type: &str, code: &str) -> String {
+    // let tre = Regex::new(r"([a-zA-Z0-9]+)\s\{[ \n]+}").unwrap();
+
     let re = Regex::new(r"\{[ \n]+}").unwrap();
+
     match return_type {
         "ListNode" => re
             .replace(code, "{\n        Some(Box::new(ListNode::new(0)))\n    }")
