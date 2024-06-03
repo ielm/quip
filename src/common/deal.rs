@@ -145,15 +145,15 @@ fn insert_return_type(code: &str) -> String {
 
     let syntax_tree = parse_file(code).unwrap();
 
-    for item in syntax_tree.items {
-        extract_block_details(item.clone());
-        if let syn::Item::Fn(item_fn) = item {
-            if let Some(return_type) = extract_return_type(&item_fn) {
-                println!("Function: {}", item_fn.sig.ident);
-            }
-        }
-    }
-
+    // for item in syntax_tree.items {
+    //     extract_block_details(item.clone());
+    //     if let syn::Item::Fn(item_fn) = item {
+    //         if let Some(return_type) = extract_return_type(&item_fn) {
+    //             println!("Function: {}", item_fn.sig.ident);
+    //         }
+    //     }
+    // }
+    //
     code.to_string()
 }
 
